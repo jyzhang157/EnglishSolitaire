@@ -1,0 +1,3 @@
+﻿  digraph.cpp
+d:\codes\cpp\software_project\englishsolitaire\digraph.cpp(23): warning C4267: “参数”: 从“size_t”转换到“int”，可能丢失数据
+  EnglishSolitaire.vcxproj -> D:\Codes\Cpp\software_project\EnglishSolitaire\x64\Debug\EnglishSolitaire.exe
