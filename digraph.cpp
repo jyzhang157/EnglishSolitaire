@@ -38,7 +38,7 @@ void Digraph::addVertex(string v)
 	}
 }
 
-void BFS::search(const string s)
+void DFS::search(const string s)
 {
 	
 	int i=_graph.find(s);
@@ -54,18 +54,51 @@ void BFS::search(const string s)
 	_graph.vList()[i]->setFlag(false);
 	return;
 }
-void BFS::search(int i)
+void DFS::search(int i)
 {
-	//_graph.vList()[i]->setFlag(true);
-	//_route.push(_graph.vList()[i]->ele());
-	//search(_graph.vList()[i]->index());
-	//_route.pop();
-	//_graph.vList()[i]->setFlag(false);
-
-	//cout << "没有找到对应的单词" << endl;
-	//return;
+	SList* p;
+	for (p = _graph.adjList()[i]->next(); p != NULL; p = p->next())
+	{
+		if (p->data()->flag())
+			continue;
+		else
+		{
+			_length++;
+			_route.push(p->data()->ele());
+			p->data()->setFlag(true);
+			//cout << p->data()->ele().c_str()<< p->data()->index() << endl;
+			//printf("%p", &p->data()->index());
+			search(p->data()->index());
+			_length--;
+			_route.pop();
+			p->data()->setFlag(false);
+		}
+	}
+	if (_max_length < _length)
+	{
+		_max_length = _length;
+		_max_route = _route;
+	}
 }
 
+void DFS::printResult()
+{
+	string route;
+	if(_max_route.empty())
+		cout<<"没有进行搜索，请使用search方法"<<endl;
+	else
+	{
+		while (!_max_route.empty())
+		{
+			if (route.empty())
+				route = _max_route.top();
+			else
+				route = _max_route.top() +"->"+ route;
+			_max_route.pop();
+		}
+		cout << route.c_str() << endl;
+	}
+}
 //template <class string>
 //void Digraph<string>::addEdge(string* v1, string* v2)
 //{

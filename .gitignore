@@ -5,6 +5,18 @@
 
 # Compiled Object files
 
+*.ilk
+
+*.lastbuildstate
+
+*.tlog
+
+*.log
+
+*.idb
+
+*.pdb
+
 *.slo
 
 *.lo

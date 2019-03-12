@@ -15,8 +15,13 @@ int main()
 	test.addVertex("cd");
 	test.addVertex("da");
 	test.addVertex("db");
-	BFS bfs(test);
-	bfs.search("He");
+	test.addVertex("bz");
+	test.addVertex("zx");
+	test.addVertex("xx");
+	test.addVertex("xx");
+	DFS dfs(test);
+	dfs.search("bc");
+	dfs.printResult();
 	Digraph test2;
     std::cout << "Hello World!\n"; 
 }

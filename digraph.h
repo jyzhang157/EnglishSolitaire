@@ -13,14 +13,15 @@ using namespace std;
 class Vertex
 {
 public:
-    Vertex(string p):_ele(p){};
+    Vertex(string p):_ele(p),_flag(false){};
     ~Vertex() {};
 	string ele(){ return _ele; }
     string ele() const {return _ele;}//这里注意
 	bool find(string s) { return _ele == s; }
 	const bool flag() { return _flag; }
+	const bool flag() const{ return _flag; }
 	void setFlag(bool f) { _flag = f; }
-	const bool index() { return _index; }
+	const int index() { return _index; }
 	void setIndex(int i) { _index = i; }
 
 private:
@@ -35,8 +36,8 @@ public:
     SList() {};
 	SList(Vertex* v1):_data(v1){};
     ~SList() {};
-    const Vertex* data() {return _data;}
-    const SList* next() {return _next;}
+    Vertex* data() {return _data;}
+    SList* next() {return _next;}
 	void insert(Vertex* v);
 
 private:
@@ -75,18 +76,21 @@ private:
 	//void addEdge(string* v1, string* v2);
 };
 
-class BFS
+class DFS
 {
 public:
-	BFS(Digraph& graph) :_graph(graph) {};
-	~BFS() {};
+	DFS(Digraph& graph) :_graph(graph) {};
+	~DFS() {};
 	void search(const string s);
 	void search(int index);
+	void printResult();
+	
 private:
 	Digraph& _graph;
 	stack<string> _route;
-	int _max_length;
-	int _length;
+	stack<string> _max_route;
+	int _max_length=0;
+	int _length=1;
 };
 
 
